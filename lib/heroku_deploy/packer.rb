@@ -3,7 +3,7 @@ require "yui/compressor"
 module HerokuDeploy
   class Packer
     
-    class < self
+    class << self
       def compress_js(file)
         new(file, :js).compress
       end

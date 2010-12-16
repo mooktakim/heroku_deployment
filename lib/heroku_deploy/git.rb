@@ -22,8 +22,8 @@ module HerokuDeploy
         system %(git pull #{HerokuDeploy::Config.remote} master >/dev/null 2>&1)
       end
       
-      def commit(files)
-        system %(git commit -m "Heroku deployment" -o #{files.join(" ")} >/dev/null 2>&1)
+      def commit
+        system %(git commit -m "Heroku deployment" -o #{HerokuDeploy::Config.commit_files.join(" ")} >/dev/null 2>&1)
       end
       
       def create_heroku_remote

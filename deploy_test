@@ -6,6 +6,12 @@ HerokuDeploy::Config.setup do |config|
   config.app = "blahblah"
   config.remote = "heroku"
   config.generate_url = "/generate_js_and_css"
+  config.js_files = ["all.js"]
+  config.css_files = ["all.css"]
+  config.compress_js = true
+  config.compress_css = true
+  config.migrate = true
+  config.hoptoad = true
 end
 
 app = HerokuDeploy::Rails.new

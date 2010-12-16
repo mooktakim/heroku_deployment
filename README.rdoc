@@ -4,12 +4,12 @@ Deployment scripts for Heroku.
 
 To generate CSS and JS use:
 # route.rb
-match "generate_js_and_css" => "application#generate_js_and_css"
+  match "generate_js_and_css" => "application#generate_js_and_css"
 
 # application_controller.rb
-def generate_js_and_css
-  render :inline => "SUCCESS", :layout => true
-end
+  def generate_js_and_css
+    render :inline => "SUCCESS", :layout => true
+  end
 
 If you have all your CSS and JS declared in the layout file, this should work.
 

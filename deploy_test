@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require "heroku_deploy"
+require "heroku_deployment"
 
-HerokuDeploy::Config.setup do |config|
+HerokuDeployment::Config.setup do |config|
   config.app = "blahblah"
   config.remote = "heroku"
   config.generate_url = "/generate_js_and_css"
@@ -14,5 +14,5 @@ HerokuDeploy::Config.setup do |config|
   config.hoptoad = true
 end
 
-app = HerokuDeploy::Rails.new
+app = HerokuDeployment::Rails.new
 app.deploy

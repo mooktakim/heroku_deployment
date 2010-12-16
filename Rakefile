@@ -12,8 +12,8 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "heroku_deploy"
-  gem.homepage = "http://github.com/mooktakim/heroku_deploy"
+  gem.name = "heroku_deployment"
+  gem.homepage = "http://github.com/mooktakim/heroku_deployment"
   gem.license = "MIT"
   gem.summary = %Q{Tools to automate deployment to Heroku}
   gem.description = %Q{Tools to automate deployment to Heroku. Heroku is already automatic, but if you like to compile all your SASS and compress all your CSS&JS files before committing to Heroku, this tool is great for that}
@@ -45,7 +45,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "heroku_deploy #{version}"
+  rdoc.title = "heroku_deployment #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

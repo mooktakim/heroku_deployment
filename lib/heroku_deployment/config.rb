@@ -1,4 +1,4 @@
-module HerokuDeploy
+module HerokuDeployment
   class Config
     class << self
       def setup &block

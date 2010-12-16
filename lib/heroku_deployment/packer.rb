@@ -1,6 +1,6 @@
 require "yui/compressor"
 
-module HerokuDeploy
+module HerokuDeployment
   class Packer
     
     class << self

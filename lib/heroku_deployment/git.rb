@@ -1,4 +1,4 @@
-module HerokuDeploy
+module HerokuDeployment
   class Git
     class << self
       def current_version
@@ -15,20 +15,20 @@ module HerokuDeploy
       
       def push_remote
         create_heroku_remote
-        system %(git push #{HerokuDeploy::Config.remote} master)
+        system %(git push #{HerokuDeployment::Config.remote} master)
       end
       
       def pull_remote
-        system %(git pull #{HerokuDeploy::Config.remote} master >/dev/null 2>&1)
+        system %(git pull #{HerokuDeployment::Config.remote} master >/dev/null 2>&1)
       end
       
       def commit
-        system %(git commit -m "Heroku deployment" -o #{HerokuDeploy::Config.commit_files.join(" ")} >/dev/null 2>&1)
+        system %(git commit -m "Heroku deployment" -o #{HerokuDeployment::Config.commit_files.join(" ")} >/dev/null 2>&1)
       end
       
       def create_heroku_remote
-        remote = HerokuDeploy::Config.remote
-        app = HerokuDeploy::Config.app
+        remote = HerokuDeployment::Config.remote
+        app = HerokuDeployment::Config.app
         if `git remote | grep #{remote}`.to_s == ""
           puts "Couldn't find '#{remote}' remote, added one now"
           system %(git remote add #{remote} git@heroku.com:#{app}.git)

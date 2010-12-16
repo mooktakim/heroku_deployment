@@ -2,7 +2,8 @@
 
 Deployment scripts for Heroku.
 
-To generate CSS and JS use:
+To generate CSS and JS use
+
 # route.rb
   match "generate_js_and_css" => "application#generate_js_and_css"
 

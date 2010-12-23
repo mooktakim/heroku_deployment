@@ -5,10 +5,12 @@ module HerokuDeployment
     
     class << self
       def compress_js(file)
+        return unless File.exists?(file)
         new(file, :js).compress
       end
       
       def compress_css(file)
+        return unless File.exists?(file)
         new(file, :css).compress
       end
     end

@@ -9,7 +9,7 @@ module HerokuDeployment
 
     def generate_css_and_js
       puts "Generating all the Javascripts and CSS as production"
-      # system %(rm #{(js_files.collect{|j| "public/javascripts/#{j}"} + css_files.collect{|c| "public/stylesheets/#{c}"}).join(" ")} 2> /dev/null)
+      system %(rm #{(js_files.collect{|j| "public/javascripts/#{j}"} + css_files.collect{|c| "public/stylesheets/#{c}"}).join(" ")} 2> /dev/null)
       HerokuDeployment::Config.commit_files << 'public/javascripts/'
       HerokuDeployment::Config.commit_files << 'public/stylesheets/'
       !!system(%(RAILS_ENV=production ./script/rails runner "require 'rails/console/app' ; app.get '#{HerokuDeployment::Config.generate_url}'"))

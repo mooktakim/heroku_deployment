@@ -8,6 +8,8 @@ module HerokuDeployment
     end
 
     def generate_css_and_js
+      js_files = HerokuDeployment::Config.js_files
+      css_files = HerokuDeployment::Config.css_files
       puts "Generating all the Javascripts and CSS as production"
       system %(rm #{(js_files.collect{|j| "public/javascripts/#{j}"} + css_files.collect{|c| "public/stylesheets/#{c}"}).join(" ")} 2> /dev/null)
       HerokuDeployment::Config.commit_files << 'public/javascripts/'

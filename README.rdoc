@@ -14,6 +14,27 @@ To generate CSS and JS use:
 
 If you have all your CSS and JS declared in the layout file, this should work.
 
+Created a rake task, or just an rb script (which i prefer) with the following:
+
+  #!/usr/bin/env ruby
+
+  require "heroku_deployment"
+
+  HerokuDeployment::Config.setup do |config|
+    config.app = "heroku_app"
+    config.remote = "heroku"
+    config.generate_url = "/generate_js_and_css"
+    config.js_files = ["all.js"]
+    config.css_files = ["all.css"]
+    config.compress_js = true
+    config.compress_css = true
+    config.migrate = true
+    config.hoptoad = true
+  end
+
+  app = HerokuDeployment::Rails.new
+  app.deploy
+
 == Contributing to heroku_deployment
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet

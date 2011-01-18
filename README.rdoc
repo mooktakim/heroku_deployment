@@ -14,7 +14,7 @@ To generate CSS and JS use:
 
 If you have all your CSS and JS declared in the layout file, this should work.
 
-Created a rake task, or just an rb script (which i prefer) with the following:
+Created a rake task, or just an ruby script (which i prefer) with the following:
 
   #!/usr/bin/env ruby
 

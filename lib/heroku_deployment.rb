@@ -14,7 +14,14 @@ module HerokuDeployment
       system %(rm #{(js_files.collect{|j| "public/javascripts/#{j}"} + css_files.collect{|c| "public/stylesheets/#{c}"}).join(" ")} 2> /dev/null)
       HerokuDeployment::Config.commit_files << 'public/javascripts/'
       HerokuDeployment::Config.commit_files << 'public/stylesheets/'
-      !!system(%(RAILS_ENV=production ./script/rails runner "Rails.application.config.action_controller.perform_caching = false ; Rails.cache.clear; require 'rails/console/app' ; app.get '#{HerokuDeployment::Config.generate_url}'"))
+      res = !!system(%(RAILS_ENV=production ./script/rails runner "Rails.application.config.action_controller.perform_caching = false; require 'rails/console/app' ; app.get '#{HerokuDeployment::Config.generate_url}'"))
+      HerokuDeployment::Config.commit_files.each do |f|
+        unless File.exist?(f)
+          puts "File '#{f}' did not get created! Deploy failed"
+          return false
+        end
+      end
+      res
     end
     
     def db_migrate

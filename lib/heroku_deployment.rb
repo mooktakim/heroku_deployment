@@ -14,6 +14,7 @@ module HerokuDeployment
       system %(rm #{(js_files.collect{|j| "public/javascripts/#{j}"} + css_files.collect{|c| "public/stylesheets/#{c}"}).join(" ")} 2> /dev/null)
       HerokuDeployment::Config.commit_files << 'public/javascripts/'
       HerokuDeployment::Config.commit_files << 'public/stylesheets/'
+      puts %(Running: \nRAILS_ENV=production ./script/rails runner "Rails.application.config.action_controller.perform_caching = false; require 'rails/console/app' ; app.get '#{HerokuDeployment::Config.generate_url}'")
       res = !!system(%(RAILS_ENV=production ./script/rails runner "Rails.application.config.action_controller.perform_caching = false; require 'rails/console/app' ; app.get '#{HerokuDeployment::Config.generate_url}'"))
       (js_files.collect{|j| "public/javascripts/#{j}"} + css_files.collect{|c| "public/stylesheets/#{c}"}).each do |f|
         unless File.exist?(f)

@@ -2,7 +2,7 @@ Dir["#{File.dirname(__FILE__)}/heroku_deployment/**/*.rb"].each {|f| require f}
 
 module HerokuDeployment
   class Rails
-    
+
     def initialize
       HerokuDeployment::Config.commit_files = []
     end
@@ -23,7 +23,7 @@ module HerokuDeployment
       end
       res
     end
-    
+
     def db_migrate
       system %(heroku rake db:migrate --app #{HerokuDeployment::Config.app})
     end
@@ -44,8 +44,10 @@ module HerokuDeployment
         end
       end
       HerokuDeployment::Git.commit
-      HerokuDeployment::Git.push_remote
-      HerokuDeployment::Git.pull_remote
+      if HerokuDeployment::Config.skip_push_to_heroku
+        HerokuDeployment::Git.push_remote
+        HerokuDeployment::Git.pull_remote
+      end
       HerokuDeployment::Git.push
       HerokuDeployment::Git.pull
       db_migrate if HerokuDeployment::Config.migrate

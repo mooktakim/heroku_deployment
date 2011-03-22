@@ -47,6 +47,8 @@ module HerokuDeployment
       unless HerokuDeployment::Config.skip_push_to_heroku
         HerokuDeployment::Git.push_remote
         HerokuDeployment::Git.pull_remote
+      else
+        puts "SKIPPING HEROKU DEPLOYMENT"
       end
       HerokuDeployment::Git.push
       HerokuDeployment::Git.pull

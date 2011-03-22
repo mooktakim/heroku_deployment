@@ -44,7 +44,7 @@ module HerokuDeployment
         end
       end
       HerokuDeployment::Git.commit
-      if HerokuDeployment::Config.skip_push_to_heroku
+      unless HerokuDeployment::Config.skip_push_to_heroku
         HerokuDeployment::Git.push_remote
         HerokuDeployment::Git.pull_remote
       end
